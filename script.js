@@ -84,13 +84,28 @@
 
     var audio = document.getElementById("bgMusic");
     if (audio) {
-      var shouldPlay = sessionStorage.getItem("playLoveSong") === "1";
+      var url = new URL(window.location.href);
+      var shouldPlay =
+        sessionStorage.getItem("playLoveSong") === "1" ||
+        url.searchParams.get("play") === "1";
+
       if (shouldPlay) {
         sessionStorage.removeItem("playLoveSong");
-        var playAttempt = audio.play();
-        if (playAttempt && typeof playAttempt.catch === "function") {
-          playAttempt.catch(function () {});
+
+        function tryPlay() {
+          var playAttempt = audio.play();
+          if (playAttempt && typeof playAttempt.catch === "function") {
+            playAttempt.catch(function () {});
+          }
         }
+
+        tryPlay();
+        setTimeout(tryPlay, 120);
+
+        window.addEventListener("pageshow", tryPlay);
+        document.addEventListener("visibilitychange", function () {
+          if (!document.hidden) tryPlay();
+        });
       }
     }
   });
