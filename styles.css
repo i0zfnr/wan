@@ -21,25 +21,6 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.audio-prompt {
-  position: fixed;
-  right: 14px;
-  bottom: 14px;
-  z-index: 50;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  background: rgba(0, 0, 0, 0.72);
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 999px;
-  font: 500 13px/1 "Poppins", sans-serif;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-}
-
-.audio-prompt.hidden {
-  display: none;
-}
-
 /* ---------- Scene ---------- */
 .scene {
   width: 100%;
