@@ -82,32 +82,16 @@
       timer = setTimeout(function () { if (heart) build(heart); }, 200);
     });
 
-    /* -- Audio autoplay with tap fallback -- */
     var audio = document.getElementById("bgMusic");
-    var audioPrompt = document.getElementById("audioPrompt");
-
-    if (audio && audioPrompt) {
-      audio.muted = false;
-
-      function hidePrompt() {
-        audioPrompt.classList.add("hidden");
+    if (audio) {
+      var shouldPlay = sessionStorage.getItem("playLoveSong") === "1";
+      if (shouldPlay) {
+        sessionStorage.removeItem("playLoveSong");
+        var playAttempt = audio.play();
+        if (playAttempt && typeof playAttempt.catch === "function") {
+          playAttempt.catch(function () {});
+        }
       }
-
-      function showPrompt() {
-        audioPrompt.classList.remove("hidden");
-      }
-
-      var playAttempt = audio.play();
-      if (playAttempt && typeof playAttempt.catch === "function") {
-        playAttempt.then(hidePrompt).catch(showPrompt);
-      } else if (audio.paused) {
-        showPrompt();
-      }
-
-      audioPrompt.addEventListener("click", function () {
-        audio.muted = false;
-        audio.play().then(hidePrompt).catch(showPrompt);
-      });
     }
   });
 })();
