@@ -1,33 +1,57 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hihihihi</title>
+  <title>For You</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=19" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; }
+    body {
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 20% 20%, #2a0f1e 0%, #090909 45%, #000 100%);
+      font-family: "Poppins", sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+    .wrap { text-align: center; padding: 24px; }
+    h1 {
+      font-size: clamp(26px, 5vw, 44px);
+      font-weight: 600;
+      margin-bottom: 18px;
+      text-shadow: 0 0 18px rgba(255, 45, 149, 0.5);
+    }
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 28px;
+      font: 600 16px/1 "Poppins", sans-serif;
+      color: #fff;
+      background: linear-gradient(135deg, #ff2d95, #ff5ab0);
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(255, 45, 149, 0.45);
+    }
+    button:hover { filter: brightness(1.05); }
+  </style>
 </head>
 
 <body>
-  <audio id="bgMusic" autoplay loop playsinline>
-    <source src="marias.mp3" type="audio/mpeg" />
-  </audio>
+  <div class="wrap">
+    <h1>Click this, my love</h1>
+    <button id="startBtn" type="button">Open</button>
+  </div>
 
-  <button id="audioPrompt" class="audio-prompt hidden" type="button">Tap Here</button>
-
-  <main class="scene">
-    <div class="heart" id="heart"></div>
-    <div class="center-brand">
-      <span class="brand-kitty">Feenaaa</span>
-      <!-- <span class="brand-ide">Dev</span> -->
-    </div>
-  </main>
-  <!-- <footer class="credit">Made with oguzdeveloper</footer> -->
-  <script src="script.js?v=19"></script>
+  <script>
+    document.getElementById("startBtn").addEventListener("click", function () {
+      sessionStorage.setItem("playLoveSong", "1");
+      window.location.href = "index2.html";
+    });
+  </script>
 </body>
 
 </html>
